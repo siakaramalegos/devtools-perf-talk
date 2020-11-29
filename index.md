@@ -6,7 +6,7 @@ revealOptions:
   transition: none
 ---
 
-<!-- .slide: data-background="./images/jeshoots-com-VdOO4_HFTWM-unsplash.jpg" -->
+<!-- .slide: data-background="./images/pliers_2200.jpg" -->
 <h1 class="title highlighter-light" style="text-align:right;">Dev Tools <span class="translucent">for </span> Performance</h1>
 <h2 class="subtitle" style="color:#333;text-align:right;">Sia Karamalegos</h2>
 
@@ -20,8 +20,7 @@ revealOptions:
 
 ---
 
-<!-- TODO: update -->
-## [bit.ly/serverless-netlify](https://bit.ly/serverless-netlify)
+## [bit.ly/devtools-sia](https://bit.ly/devtools-sia)
 
 ---
 
@@ -182,7 +181,7 @@ _Self-run data sent to your backend or analytics tool_
 
 ---
 
-<!-- .slide: data-background="./images/cesar-carlevarino-aragon-NL_DF0Klepc-unsplash.jpg" -->
+<!-- .slide: data-background="./images/tools_2200.jpg" -->
 
 # More tools in the toolbox <!-- .element: class="highlighter-light" -->
 
@@ -229,7 +228,7 @@ Note: Cmd+shift+p for "coverage"
 
 ---
 
-<!-- .slide: data-background="./images/fleur-dQf7RZhMOJU-unsplash.jpg" -->
+<!-- .slide: data-background="./images/measures_2200.jpg" -->
 
 # 📈 Metrics 📈 <!-- .element: class="highlighter-light" -->
 
@@ -348,7 +347,7 @@ Look at the tools you ran earlier, and write down:
 
 ---
 
-<!-- .slide: data-background="./images/christopher-burns-8KfCR12oeUM-unsplash.jpg" -->
+<!-- .slide: data-background="./images/sparks_2200.jpg" -->
 
 # Set up Dev Tools #LikeABoss <!-- .element: class="highlighter-light color-secondary" -->
 
@@ -485,12 +484,11 @@ Note: Scripts with the defer attribute will execute in the order in which they a
 
 ---
 
-<!-- .slide: data-background="./images/tekton-SVpCSOCcCwA-unsplash.jpg" -->
+<!-- .slide: data-background="./images/wrenches_2200.jpg" -->
 <h1 class="title">Thanks!</h1>
 
-<!-- TODO: update -->
 <div class="dark-background">
-  <p style="color:#fff;">Slides:<br> <a href="https://bit.ly/serverless-netlify">bit.ly/serverless-netlify</a></p>
+  <p style="color:#fff;">Slides:<br> <a href="https://bit.ly/devtools-sia">bit.ly/devtools-sia</a></p>
   <p style="color:#fff;">Writing, resources, and more:<br> <a href="https://sia.codes/">sia.codes</a></p>
 </div>
 
