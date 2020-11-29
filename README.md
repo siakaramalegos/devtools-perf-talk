@@ -1,14 +1,10 @@
-# Intro to Serverless Functions Using Netlify, a mini-workshop
+# Diving into Dev Tools for performance
 
-Serverless functions are a key skill to know when moving to Jamstack applications or serverless architecture. Going serverless means having no server to manage while also having the ability to scale infinitely.
-
-In this workshop, we'll start with a basic, static Eleventy website then build in dynamic features like form handling and secure API access using serverless functions. We'll use the Netlify CLI to set up our dev environment and deploy to production on Netlify. You must understand vanilla JavaScript and HTML and be familiar with running npm scripts to attend this workshop.
-
-The demo code can be found in [this repo](https://github.com/siakaramalegos/serverless-netlify-demo).
+Performance is important. Tooling can be hard. Do flame charts and waterfalls intimidate you? Come learn how to use common performance tools such as Chrome DevTools, Lighthouse, and webpagetest.org. We'll profile several websites with different performance issues to illustrate how to use each tool. In this talk, I'll live-profile several sites to help you see how to approach performance analysis. It's best if you already know how to use the Chrome Dev Tools inspector, but we will approach the performance tools from a beginner's starting point. Attendees should be comfortable with HTML at a minimum.
 
 ## Slides and Controls
 
-The slides are deployed at [projects.sia.codes/serverless-netlify/](https://projects.sia.codes/serverless-netlify/#/).
+The slides are deployed at [projects.sia.codes/devtools-perf-talk/](https://projects.sia.codes/devtools-perf-talk/#/).
 
 To advance the slides, use `n` for next and `p` for previous. The right arrow jumps to the next section (and left for previous section). Up and down to advance through slides within a section.
 
