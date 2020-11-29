@@ -201,7 +201,7 @@ _Self-run data sent to your backend or analytics tool_
 
 <small>[RespImageLint](https://github.com/ausi/respimagelint) is a bookmarklet linter for responsive images.</small>
 
-<img src="./images/RespImageLint.png" alt="Screenshot of RespImageLint feedback saying multiple images for different screen sizes needed" class="no-outline">
+<img src="./images/respimagelint.png" alt="Screenshot of RespImageLint feedback saying multiple images for different screen sizes needed" class="no-outline">
 
 Note: Lighthouse audits also does this better now, but I still like this quick tool and the prescriptive suggestions.
 
