@@ -26,13 +26,12 @@ revealOptions:
 
 ## Exercise: Flying Blind ✈️
 
-Pick a website you work on. Run it through each of these tools, keeping each open in separate tabs:
+*Pick a website you work on. Run it through each of these tools, keeping each open in separate tabs:*
 
-1. **Lighthouse** (DevTools audit tab, only check performance)
+1. **Lighthouse** (DevTools, only check performance)
 2. **PageSpeed Insights** [developers.google.com/speed/pagespeed/insights/](https://developers.google.com/speed/pagespeed/insights/)
 3. **WebPageTest** [webpagetest.org/easy](http://webpagetest.org/easy)
-4. **Test My Site** [testmysite.thinkwithgoogle.com](https://testmysite.thinkwithgoogle.com)
-5. **RespImageLint** [ausi.github.io/respimagelint/](https://ausi.github.io/respimagelint/) (requires some set up)
+4. **RespImageLint** [ausi.github.io/respimagelint/](https://ausi.github.io/respimagelint/) (bookmarklet - drag to bookmarks bar to use)
 
 Note: **Discussion**: What do you notice about each? What are the similarities/differences? What do you like/dislike?
 
@@ -187,26 +186,6 @@ _Self-run data sent to your backend or analytics tool_
 
 ---
 
-## Test My Site
-
-<img class="nooutline" width="150px" src="./images/tool-testmysite.svg" alt="Test My Site" >
-
-- Snazzy-looking and gives pretty pdf
-- High-level data from WebPageTest and PageSpeed Insights
-- Good for the speed scorecard and impact calculator
-
----
-
-## RespImageLint
-
-<small>[RespImageLint](https://github.com/ausi/respimagelint) is a bookmarklet linter for responsive images.</small>
-
-<img src="./images/respimagelint.png" alt="Screenshot of RespImageLint feedback saying multiple images for different screen sizes needed" class="no-outline">
-
-Note: Lighthouse audits also does this better now, but I still like this quick tool and the prescriptive suggestions.
-
----
-
 ## Bundle Analyzers
 
 `webpack-bundle-analyzer`
@@ -330,7 +309,7 @@ Note: Target is 75% of loads. "Core Web Vitals are the subset of Web Vitals that
 
 ## Exercise: Metrics
 
-Look at the tools you ran earlier, and write down:
+*Look at the tools you ran earlier, and write down:*
 
 1. The site's speed index, LCP, TTI, TBT, FID, and CLS.
 2. Which tools did you find them in?
