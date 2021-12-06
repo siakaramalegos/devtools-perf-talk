@@ -498,6 +498,7 @@ table.fixed-two-column td {
 #dev-tool {
   display: inline-block;
   margin: 20px;
+  max-width: 250px;
 }
 
 li.no-bullet {

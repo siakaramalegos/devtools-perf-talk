@@ -28,10 +28,11 @@ revealOptions:
 
 *Pick a website you work on. Run it through each of these tools, keeping each open in separate tabs:*
 
-1. **Lighthouse** (DevTools, only check performance)
-2. **PageSpeed Insights** [developers.google.com/speed/pagespeed/insights/](https://developers.google.com/speed/pagespeed/insights/)
-3. **WebPageTest** [webpagetest.org/easy](http://webpagetest.org/easy)
-4. **RespImageLint** [ausi.github.io/respimagelint/](https://ausi.github.io/respimagelint/) (bookmarklet - drag to bookmarks bar to use)
+1. **WebPageTest** [webpagetest.org/easy](http://webpagetest.org/easy)
+2. **Lighthouse** (DevTools, only check performance)
+3. **Lighthouse Treemap** (Look for button in the Lighthouse report)
+4. **PageSpeed Insights** [developers.google.com/speed/pagespeed/insights/](https://developers.google.com/speed/pagespeed/insights/)
+5. **RespImageLint** [ausi.github.io/respimagelint/](https://ausi.github.io/respimagelint/) (bookmarklet - drag to bookmarks bar to use)
 
 Note: **Discussion**: What do you notice about each? What are the similarities/differences? What do you like/dislike?
 
@@ -142,12 +143,7 @@ Note: Buy a shitty phone and connect it to your computer for on-device debugging
 
 ## Field/RUM Testing Tools
 
-_Publicly available data_
-
-<div id="dev-tool">
-  <img class="nooutline" width="150px" src="./images/tool-crux.png" alt="CrUX"/>
-  <div class="color-secondary">CrUX</div>
-</div>
+_CrUX Publicly available data_
 
 <div id="dev-tool">
   <img class="nooutline" width="150px" src="./images/tool-psi.svg" alt="PageSpeed Insights"/>
@@ -159,13 +155,28 @@ _Publicly available data_
   <div class="color-secondary">Google BigQuery</div>
 </div>
 
-<small>Chrome User Experience (CrUX) data is available in PageSpeed Insights or BigQuery.</small>
+<div id="dev-tool">
+  <img class="nooutline" width="150px" src="./images/tool-crux.png" alt="CrUX"/>
+  <div class="color-secondary">CrUX Dashboard</div>
+</div>
+
+<small>Chrome User Experience (CrUX) data is available in PageSpeed Insights, BigQuery, the [CrUX Dashboard](https://rviscomi.github.io/crux-dash-launcher/), and via the CrUX API.</small>
 
 ---
 
 ## Field/RUM Testing Tools
 
-_Self-run data sent to your backend or analytics tool_
+_Packages and vendors_
+
+- [Web Vitals Report](https://web-vitals-report.web.app/) + [web-vitals npm package](https://github.com/GoogleChrome/web-vitals)
+- Many analytics vendors ([Speedcurve](https://www.speedcurve.com/), [Calibre](https://calibreapp.com/))
+- Starting to be bundled in more general analytics/deployment products like [Layer 0](https://www.layer0.co/performance-monitor)
+
+---
+
+## Field/RUM Testing Tools
+
+_Custom data sent to your backend or analytics tool_
 
 - Navigation Timing API
 - Resource Timing API
@@ -199,9 +210,12 @@ _Self-run data sent to your backend or analytics tool_
 ## MOAR Tools
 
 - [Dev Tools Coverage analyzer](https://developers.google.com/web/tools/chrome-devtools/coverage)
-- [Performance Budget Calculator](https://perf-budget-calculator.firebaseapp.com/)
 - [Bundlephobia](https://bundlephobia.com/)
+- [keycdn Performance Test tool](https://tools.keycdn.com/performance)
 - [Cloudinary Website Speed Test Image Analysis Tool](https://webspeedtest.cloudinary.com/)
+- Loading in a browser with JavaScript disabled
+
+<small>[An Informal Survey of Web Performance Tooling in 2021](https://sia.codes/posts/survey-web-performance-tooling/)</small>
 
 Note: Cmd+shift+p for "coverage"
 
@@ -229,12 +243,13 @@ Note: By delightful I mean both is it stable and smooth.
 
 ## When can I see the page?
 
-- Speed index measures how quickly the page contents are visually populated, but it's not simple<!-- .element: class="fragment fade-in-then-semi-out" -->
-- Largest contentful paint measures when the largest image or text paint in the viewport occurs<!-- .element: class="fragment fade-in" -->
-  - Removed elements are invalidated (splash screens)<!-- .element: class="fragment fade-in" -->
-  - Larger weight in Lighthouse<!-- .element: class="fragment fade-in" -->
+**Largest contentful paint** (LCP) measures when the largest image or text paint in the viewport occurs
 
-<small>[Largest Contentful Paint (LCP)](https://web.dev/lcp/), [Speed Index](https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index)</small>
+- Elements removed from the DOM are invalidated (splash screens)<!-- .element: class="fragment fade-in" -->
+- A "good" experience is < 2.5 seconds<!-- .element: class="fragment fade-in" -->
+- Impacted by slow server response (TTFB), render-blocking resources, client-side rendering<!-- .element: class="fragment fade-in" -->
+
+<small>[Largest Contentful Paint (LCP)](https://web.dev/lcp/)</small>
 
 ---
 
@@ -248,10 +263,12 @@ Note: By delightful I mean both is it stable and smooth.
 
 ## When can I interact with the page?
 
-- Time to Interactive (TTI) measures how long it takes a page to become fully interactive<!-- .element: class="fragment fade-in-then-semi-out" -->
-- Total blocking time (TBT) measures the time between First Contentful Paint (FCP) and TTI where the main thread was blocked for long enough to prevent input responsiveness.<!-- .element: class="fragment fade-in-then-semi-out" -->
-- First Input Delay (FID) measures the delta between when an input event is received and when the main thread is next idle (field only).<!-- .element: class="fragment fade-in-then-semi-out" -->
-- Large blocks of scripting on the main thread makes interaction worse.<!-- .element: class="fragment fade-in-then-semi-out" -->
+<ul>
+  <li class="fragment fade-in-then-semi-out"><strong>Time to Interactive</strong> (TTI) measures how long it takes a page to become fully interactive</li>
+  <li class="fragment fade-in-then-semi-out"><strong>Total blocking time</strong>  (TBT) measures the time between First Contentful Paint (FCP) and TTI where the main thread was blocked for long enough to prevent input responsiveness.</li>
+  <li class="fragment fade-in-then-semi-out"><strong>First Input Delay</strong> (FID) measures the delta between when an input event is received and when the main thread is next idle (field only).</li>
+  <li class="fragment fade-in-then-semi-out">Caused by large blocks of scripting on the main thread</li>
+</ul>
 
 <small>[How does TBT relate to TTI?](https://web.dev/tbt/#how-does-tbt-relate-to-tti), [First Input Delay](https://web.dev/fid/)</small>
 
@@ -268,11 +285,13 @@ Note: the point at which layout has stabilized, key webfonts are visible, and th
 
 ---
 
-## Cumulative Layout Shift** (CLS)
+## Visual Stability: CLS
 
-> measures the sum total of all individual layout shift scores for every unexpeceted layout shift that occurs during the entire lifespan of the page.
+**Cumulative Layout Shift** (CLS) is a new metric that:
 
-<small>[From web.dev](https://web.dev/cls/)</small>
+> measures the sum total of all individual layout shift scores for every unexpeceted layout shift that occurs during ~~the entire lifespan of the page~~ a maximum session window with a 1 second gap, capped at 5 seconds.
+
+<small>[web.dev/cls](https://web.dev/cls/), [Evolving Cumulative Layout Shift in web tooling](https://web.dev/cls-web-tooling/)</small>
 
 ---
 
@@ -311,7 +330,7 @@ Note: Target is 75% of loads. "Core Web Vitals are the subset of Web Vitals that
 
 *Look at the tools you ran earlier, and write down:*
 
-1. The site's speed index, LCP, TTI, TBT, FID, and CLS.
+1. The site's TTFB, FCP, LCP, TBT, FID, and CLS.
 2. Which tools did you find them in?
 3. Under what conditions were these run (device, network, emulated/real?
 
@@ -323,29 +342,6 @@ Note: Target is 75% of loads. "Core Web Vitals are the subset of Web Vitals that
 - Pinterest: [pinner-wait-time](https://medium.com/pinterest-engineering/driving-user-growth-with-performance-improvements-cfc50dafadd7)
 
 <small>[Custom metrics](https://web.dev/custom-metrics/) on web.dev</small>
-
----
-
-<!-- .slide: data-background="./images/sparks_2200.jpg" -->
-
-# Set up Dev Tools #LikeABoss <!-- .element: class="highlighter-light color-secondary" -->
-
----
-
-<img class="nooutline" width="80%" src="./images/no_extensions.png" alt="Chrome extensions negatively affected this page's load performance. Try auditing the page in incognito mode or from a Chrome profile without extensions.">
-
----
-
-1. Set up a new Chrome profile with __no extensions__.
-2. Open **Dev Tools > Settings > Experiments**, hit **shift** 6 times, turn on:
-  - Timeline: event initiators (shows repaint caused by x)
-  - Automatically pretty print...
-  - Enable CSS grid debugging
-  - Input events on Timeline overview
-  - Timeline: invalidation tracking (like inline styles)
-3. Restart Dev Tools (alt + r)
-
-Note: Incognito can't test cache or long-term sessions
 
 ---
 
@@ -370,7 +366,7 @@ Note: Use **large request rows** to make size and time columns show more data. T
 
 ## Tricks + shortcuts
 
-- **cmd + shift + p** searches settings like "Show/hide third party badges" and “Coverage”
+- **cmd + shift + p** searches settings like "Enable network request blocking" and “Coverage”
 - **magical shift key** - shift and hover over files: red shows the files downloaded by the file hovered, and green shows the file that initiated the download of the file hovered
 - **Performance tab/flame chart**: Scroll up/down (zoom in/out), left/right (right/left). Keyboard shortcuts w/s (zoom in/out) and a/d (move right/left).
 - **cmd + e**: start/stop recording
@@ -416,6 +412,10 @@ Note: Chained critical path/request depth - one file calling the next file calli
 <img class="no-outline" src="./images/css-blocking-js-annotated.png">
 
 Note: Is the script critical? If not, async/defer. If so, put before CSS.
+
+---
+
+# [Render-blocking resources](https://sia.codes/posts/render-blocking-resources/)
 
 ---
 
