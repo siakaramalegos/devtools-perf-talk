@@ -24,15 +24,146 @@ revealOptions:
 
 ---
 
+<!-- .slide: data-background="./images/measures_2200.jpg" -->
+
+# 📈 Metrics 📈 <!-- .element: class="highlighter-light" -->
+
+---
+
+> When optimizing for speed, <br>**user experience** should always <br>be your primary metric.
+
+---
+
+## User experience
+
+1. When can I see the page? <!-- .element: class="fragment fade-in-then-semi-out" -->
+2. When can I interact with it? <!-- .element: class="fragment fade-in-then-semi-out" -->
+3. Does it respond to my interactions? <!-- .element: class="fragment fade-in-then-semi-out" -->
+4. Is it delightful? <!-- .element: class="fragment fade-in-then-semi-out" -->
+
+Note: By delightful I mean both is it stable and smooth.
+
+---
+
+## When can I see the page?
+
+**Largest contentful paint** (LCP) measures when the largest image or text paint in the viewport occurs
+
+- Elements removed from the DOM are invalidated (splash screens)<!-- .element: class="fragment fade-in" -->
+- A "good" experience is < 2.5 seconds<!-- .element: class="fragment fade-in" -->
+- Impacted by slow server response (TTFB), render-blocking resources, client-side rendering<!-- .element: class="fragment fade-in" -->
+
+<small>[Largest Contentful Paint (LCP)](https://web.dev/lcp/)</small>
+
+---
+
+## When can I interact with the page?
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Lx1cYJAVnzA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+<small>End to End Apps with Polymer by Kevin Schaaf, Polymer Summit 2017</small>
+
+---
+
+## When can I interact with the page?
+
+<ul>
+  <li class="fragment fade-in-then-semi-out"><strong>Time to Interactive</strong> (TTI) measures how long it takes a page to become fully interactive</li>
+  <li class="fragment fade-in-then-semi-out"><strong>Total blocking time</strong>  (TBT) measures the time between First Contentful Paint (FCP) and TTI where the main thread was blocked for long enough to prevent input responsiveness.</li>
+  <li class="fragment fade-in-then-semi-out"><strong>First Input Delay</strong> (FID) measures the delta between when an input event is received and when the main thread is next idle (field only).</li>
+  <li class="fragment fade-in-then-semi-out">Caused by large blocks of scripting on the main thread</li>
+</ul>
+
+<small>[How does TBT relate to TTI?](https://web.dev/tbt/#how-does-tbt-relate-to-tti), [First Input Delay](https://web.dev/fid/)</small>
+
+Note: the point at which layout has stabilized, key webfonts are visible, and the main thread is available enough to handle user input within 50ms. The main thread is considered "blocked" any time there's a Long Task—a task that runs on the main thread for more than 50 milliseconds (ms). TBT will have a larger weight in Lighthouse.
+
+---
+
+## Is the page responding to my action?
+
+**Interaction to Next Paint** (INP): new, experimental metric that assesses how fast a page responds to user input
+
+- Visual feedback is important<!-- .element: class="fragment fade-in" -->
+- Measures overall interaction latency<!-- .element: class="fragment fade-in" -->
+- Duration from user interaction until next frame is presented after event handlers executed<!-- .element: class="fragment fade-in" -->
+- "Good" is currently < 200 ms<!-- .element: class="fragment fade-in" -->
+- Impacted by too much JS, other non-JS work on the main thread running concurrently with user interactions<!-- .element: class="fragment fade-in" -->
+
+<small>[Interaction to Next Paint (INP)](https://web.dev/inp/)</small>
+
+Note: measures the worst interaction when < 50 or the 98th percentile
+
+---
+
+## Is it delightful? Visual Stability...
+
+<video controls width="800" autoplay loop>
+  <source src="./images/layout-shift.mp4" type="video/mp4">
+  Sorry, your browser doesn't support embedded videos.
+</video>
+
+---
+
+## Visual Stability: CLS
+
+**Cumulative Layout Shift** (CLS) is a new metric that:
+
+> measures the sum total of all individual layout shift scores for every unexpeceted layout shift that occurs during ~~the entire lifespan of the page~~ a maximum session window with a 1 second gap, capped at 5 seconds.
+
+<small>[web.dev/cls](https://web.dev/cls/), [Evolving Cumulative Layout Shift in web tooling](https://web.dev/cls-web-tooling/)</small>
+
+---
+
+## Is it smooth? Frame Rate...
+
+<img src="./images/frames_per_second.gif" alt="Frames per second comparison for visual jank" class="no-outline">
+
+Note: Frame rate or frames per second (fps), is one measure of responsiveness. Modern devices refresh their screens at a rate of 60 fps. Converting that to an individual frame, we theoretically have 16 ms to render. In actuality, the browser needs some of that time, so we should target 10ms per frame. Any more, and the human eye will be able to detect the jank or jitter.
+
+---
+
+## RAIL model for performance goals
+
+- **Response**: process events in under 50ms
+- **Animation**: produce a frame in 10ms (for 60fps devices)
+- **Idle**: maximize idle time (to respond in 50ms or less)
+- **Load**: deliver content and become interactive in under 5 seconds, 2 seconds for subsequent loads\*
+
+<small>[Measure Performance with the RAIL Model](https://developers.google.com/web/fundamentals/performance/rail)</small>
+
+Note: R:Complete a transition initiated by user input within 100ms. A: Have 16ms, but browsers need about 6ms to render each frame. I: Maximize idle time to increase the odds that the page responds to user input within 50ms. L:on mid-range mobile devices with slow 3G connections
+
+---
+
+## Core Web Vitals
+
+<img src="./images/core_web_vitals.png" class="plain">
+
+<small>[Web Vitals](https://web.dev/vitals/), [The Science Behind Web Vitals](https://blog.chromium.org/2020/05/the-science-behind-web-vitals.html)</small>
+
+Note: Target is 75% of loads. "Core Web Vitals are the subset of Web Vitals that apply to all web pages, should be measured by all site owners, and will be surfaced across all Google tools. Each of the Core Web Vitals represents a distinct facet of the user experience, is measurable in the field, and reflects the real-world experience of a critical user-centric outcome."
+
+---
+
+## Next level: User-centered metrics
+
+- Twitter: [time-to-first-tweet](https://blog.twitter.com/engineering/en_us/a/2012/improving-performance-on-twittercom.html)
+- Pinterest: [pinner-wait-time](https://medium.com/pinterest-engineering/driving-user-growth-with-performance-improvements-cfc50dafadd7)
+
+<small>[Custom metrics](https://web.dev/custom-metrics/) on web.dev</small>
+
+---
+
 ## Exercise: Flying Blind ✈️
 
-*Pick a website you work on. Run it through each of these tools, keeping each open in separate tabs:*
+_Pick a website you work on. Run it through each of these tools, keeping each open in separate tabs:_
 
 1. **WebPageTest** [webpagetest.org/easy](http://webpagetest.org/easy)
 2. **Lighthouse** (DevTools, only check performance)
-3. **Lighthouse Treemap** (Look for button in the Lighthouse report)
+3. **Lighthouse Treemap** (button in the Lighthouse report)
 4. **PageSpeed Insights** [developers.google.com/speed/pagespeed/insights/](https://developers.google.com/speed/pagespeed/insights/)
-5. **RespImageLint** [ausi.github.io/respimagelint/](https://ausi.github.io/respimagelint/) (bookmarklet - drag to bookmarks bar to use)
+5. **TREO** [treo.sh/sitespeed](https://treo.sh/sitespeed)
 
 Note: **Discussion**: What do you notice about each? What are the similarities/differences? What do you like/dislike?
 
@@ -67,7 +198,6 @@ Note: **Discussion**: What do you notice about each? What are the similarities/d
     </tr>
   </tbody>
 </table>
-
 
 ---
 
@@ -218,130 +348,6 @@ _Custom data sent to your backend or analytics tool_
 <small>[An Informal Survey of Web Performance Tooling in 2021](https://sia.codes/posts/survey-web-performance-tooling/)</small>
 
 Note: Cmd+shift+p for "coverage"
-
----
-
-<!-- .slide: data-background="./images/measures_2200.jpg" -->
-
-# 📈 Metrics 📈 <!-- .element: class="highlighter-light" -->
-
----
-
-> When optimizing for speed, <br>**user experience** should always <br>be your primary metric.
-
----
-
-## User experience
-
-1. When can I see the page? <!-- .element: class="fragment fade-in-then-semi-out" -->
-2. When can I interact with it? <!-- .element: class="fragment fade-in-then-semi-out" -->
-3. Is it delightful? <!-- .element: class="fragment fade-in-then-semi-out" -->
-
-Note: By delightful I mean both is it stable and smooth.
-
----
-
-## When can I see the page?
-
-**Largest contentful paint** (LCP) measures when the largest image or text paint in the viewport occurs
-
-- Elements removed from the DOM are invalidated (splash screens)<!-- .element: class="fragment fade-in" -->
-- A "good" experience is < 2.5 seconds<!-- .element: class="fragment fade-in" -->
-- Impacted by slow server response (TTFB), render-blocking resources, client-side rendering<!-- .element: class="fragment fade-in" -->
-
-<small>[Largest Contentful Paint (LCP)](https://web.dev/lcp/)</small>
-
----
-
-## When can I interact with the page?
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Lx1cYJAVnzA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-<small>End to End Apps with Polymer by Kevin Schaaf, Polymer Summit 2017</small>
-
----
-
-## When can I interact with the page?
-
-<ul>
-  <li class="fragment fade-in-then-semi-out"><strong>Time to Interactive</strong> (TTI) measures how long it takes a page to become fully interactive</li>
-  <li class="fragment fade-in-then-semi-out"><strong>Total blocking time</strong>  (TBT) measures the time between First Contentful Paint (FCP) and TTI where the main thread was blocked for long enough to prevent input responsiveness.</li>
-  <li class="fragment fade-in-then-semi-out"><strong>First Input Delay</strong> (FID) measures the delta between when an input event is received and when the main thread is next idle (field only).</li>
-  <li class="fragment fade-in-then-semi-out">Caused by large blocks of scripting on the main thread</li>
-</ul>
-
-<small>[How does TBT relate to TTI?](https://web.dev/tbt/#how-does-tbt-relate-to-tti), [First Input Delay](https://web.dev/fid/)</small>
-
-Note: the point at which layout has stabilized, key webfonts are visible, and the main thread is available enough to handle user input within 50ms. The main thread is considered "blocked" any time there's a Long Task—a task that runs on the main thread for more than 50 milliseconds (ms). TBT will have a larger weight in Lighthouse.
-
----
-
-## Is it delightful? Visual Stability...
-
-<video controls width="800" autoplay loop>
-  <source src="./images/layout-shift.mp4" type="video/mp4">
-  Sorry, your browser doesn't support embedded videos.
-</video>
-
----
-
-## Visual Stability: CLS
-
-**Cumulative Layout Shift** (CLS) is a new metric that:
-
-> measures the sum total of all individual layout shift scores for every unexpeceted layout shift that occurs during ~~the entire lifespan of the page~~ a maximum session window with a 1 second gap, capped at 5 seconds.
-
-<small>[web.dev/cls](https://web.dev/cls/), [Evolving Cumulative Layout Shift in web tooling](https://web.dev/cls-web-tooling/)</small>
-
----
-
-## Is it smooth? Frame Rate...
-
-<img src="./images/frames_per_second.gif" alt="Frames per second comparison for visual jank" class="no-outline">
-
-Note: Frame rate or frames per second (fps), is one measure of responsiveness. Modern devices refresh their screens at a rate of 60 fps. Converting that to an individual frame, we theoretically have 16 ms to render. In actuality, the browser needs some of that time, so we should target 10ms per frame. Any more, and the human eye will be able to detect the jank or jitter.
-
----
-
-## RAIL model for performance goals
-
-- **Response**: process events in under 50ms
-- **Animation**: produce a frame in 10ms (for 60fps devices)
-- **Idle**: maximize idle time (to respond in 50ms or less)
-- **Load**: deliver content and become interactive in under 5 seconds, 2 seconds for subsequent loads*
-
-<small>[Measure Performance with the RAIL Model](https://developers.google.com/web/fundamentals/performance/rail)</small>
-
-Note: R:Complete a transition initiated by user input within 100ms. A: Have 16ms, but browsers need about 6ms to render each frame. I: Maximize idle time to increase the odds that the page responds to user input within 50ms. L:on mid-range mobile devices with slow 3G connections
-
----
-
-## Core Web Vitals
-
-<img src="./images/core_web_vitals.png" class="plain">
-
-<small>[Web Vitals](https://web.dev/vitals/), [The Science Behind Web Vitals](https://blog.chromium.org/2020/05/the-science-behind-web-vitals.html)</small>
-
-Note: Target is 75% of loads. "Core Web Vitals are the subset of Web Vitals that apply to all web pages, should be measured by all site owners, and will be surfaced across all Google tools. Each of the Core Web Vitals represents a distinct facet of the user experience, is measurable in the field, and reflects the real-world experience of a critical user-centric outcome."
-
----
-
-## Exercise: Metrics
-
-*Look at the tools you ran earlier, and write down:*
-
-1. The site's TTFB, FCP, LCP, TBT, FID, and CLS.
-2. Which tools did you find them in?
-3. Under what conditions were these run (device, network, emulated/real?
-
----
-
-## Next level: User-centered metrics
-
-- Twitter: [time-to-first-tweet](https://blog.twitter.com/engineering/en_us/a/2012/improving-performance-on-twittercom.html)
-- Pinterest: [pinner-wait-time](https://medium.com/pinterest-engineering/driving-user-growth-with-performance-improvements-cfc50dafadd7)
-
-<small>[Custom metrics](https://web.dev/custom-metrics/) on web.dev</small>
 
 ---
 
