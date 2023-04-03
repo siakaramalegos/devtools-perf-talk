@@ -36,28 +36,25 @@ revealOptions:
 
 ## User experience
 
-1. When can I see the page? <!-- .element: class="fragment fade-in-then-semi-out" -->
-2. When can I interact with it? <!-- .element: class="fragment fade-in-then-semi-out" -->
-3. Does it respond to my interactions? <!-- .element: class="fragment fade-in-then-semi-out" -->
-4. Is it delightful? <!-- .element: class="fragment fade-in-then-semi-out" -->
-
-Note: By delightful I mean both is it stable and smooth.
+1. Speed <!-- .element: class="fragment fade-in-then-semi-out" -->
+2. Responsiveness <!-- .element: class="fragment fade-in-then-semi-out" -->
+3. Stability <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 ---
 
-## When can I see the page?
+## Speed
 
 **Largest contentful paint** (LCP) measures when the largest image or text paint in the viewport occurs
 
 - Elements removed from the DOM are invalidated (splash screens)<!-- .element: class="fragment fade-in" -->
 - A "good" experience is < 2.5 seconds<!-- .element: class="fragment fade-in" -->
-- Impacted by slow server response (TTFB), render-blocking resources, client-side rendering<!-- .element: class="fragment fade-in" -->
+- Impacted by slow server response (TTFB), render-blocking resources (FCP), client-side rendering (FCP)<!-- .element: class="fragment fade-in" -->
 
 <small>[Largest Contentful Paint (LCP)](https://web.dev/lcp/)</small>
 
 ---
 
-## When can I interact with the page?
+## Responsiveness
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Lx1cYJAVnzA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -65,27 +62,23 @@ Note: By delightful I mean both is it stable and smooth.
 
 ---
 
-## When can I interact with the page?
+## Responsiveness
 
-<ul>
-  <li class="fragment fade-in-then-semi-out"><strong>Time to Interactive</strong> (TTI) measures how long it takes a page to become fully interactive</li>
-  <li class="fragment fade-in-then-semi-out"><strong>Total blocking time</strong>  (TBT) measures the time between First Contentful Paint (FCP) and TTI where the main thread was blocked for long enough to prevent input responsiveness.</li>
-  <li class="fragment fade-in-then-semi-out"><strong>First Input Delay</strong> (FID) measures the delta between when an input event is received and when the main thread is next idle (field only).</li>
-  <li class="fragment fade-in-then-semi-out">Caused by large blocks of scripting on the main thread</li>
-</ul>
+<strong>First Input Delay</strong> (FID) measures the delta between when an input event is received and when the main thread is next idle (field only).
 
-<small>[How does TBT relate to TTI?](https://web.dev/tbt/#how-does-tbt-relate-to-tti), [First Input Delay](https://web.dev/fid/)</small>
-
-Note: the point at which layout has stabilized, key webfonts are visible, and the main thread is available enough to handle user input within 50ms. The main thread is considered "blocked" any time there's a Long Task—a task that runs on the main thread for more than 50 milliseconds (ms). TBT will have a larger weight in Lighthouse.
+<small>[First Input Delay](https://web.dev/fid/)</small>
 
 ---
 
-## Is the page responding to my action?
+> FID is a participation award.
+
+---
+
+## Responsiveness, part deux
 
 **Interaction to Next Paint** (INP): new, experimental metric that assesses how fast a page responds to user input
 
 - Visual feedback is important<!-- .element: class="fragment fade-in" -->
-- Measures overall interaction latency<!-- .element: class="fragment fade-in" -->
 - Duration from user interaction until next frame is presented after event handlers executed<!-- .element: class="fragment fade-in" -->
 - "Good" is currently < 200 ms<!-- .element: class="fragment fade-in" -->
 - Impacted by too much JS, other non-JS work on the main thread running concurrently with user interactions<!-- .element: class="fragment fade-in" -->
@@ -96,7 +89,13 @@ Note: measures the worst interaction when < 50 or the 98th percentile
 
 ---
 
-## Is it delightful? Visual Stability...
+## INP is only in RUM; use TBT when lab testing.
+
+**Total blocking time (TBT)**  measures the time between First Contentful Paint (FCP) and TTI where the main thread was blocked for long enough to prevent input responsiveness.</li>
+
+---
+
+## Stability
 
 <video controls width="800" autoplay loop>
   <source src="./images/layout-shift.mp4" type="video/mp4">
@@ -105,34 +104,11 @@ Note: measures the worst interaction when < 50 or the 98th percentile
 
 ---
 
-## Visual Stability: CLS
+## Stability
 
-**Cumulative Layout Shift** (CLS) is a new metric that:
+**Cumulative Layout Shift** (CLS) measures the sum total of all individual layout shift scores for every unexpected layout shift*
 
-> measures the sum total of all individual layout shift scores for every unexpeceted layout shift that occurs during ~~the entire lifespan of the page~~ a maximum session window with a 1 second gap, capped at 5 seconds.
-
-<small>[web.dev/cls](https://web.dev/cls/), [Evolving Cumulative Layout Shift in web tooling](https://web.dev/cls-web-tooling/)</small>
-
----
-
-## Is it smooth? Frame Rate...
-
-<img src="./images/frames_per_second.gif" alt="Frames per second comparison for visual jank" class="no-outline">
-
-Note: Frame rate or frames per second (fps), is one measure of responsiveness. Modern devices refresh their screens at a rate of 60 fps. Converting that to an individual frame, we theoretically have 16 ms to render. In actuality, the browser needs some of that time, so we should target 10ms per frame. Any more, and the human eye will be able to detect the jank or jitter.
-
----
-
-## RAIL model for performance goals
-
-- **Response**: process events in under 50ms
-- **Animation**: produce a frame in 10ms (for 60fps devices)
-- **Idle**: maximize idle time (to respond in 50ms or less)
-- **Load**: deliver content and become interactive in under 5 seconds, 2 seconds for subsequent loads\*
-
-<small>[Measure Performance with the RAIL Model](https://developers.google.com/web/fundamentals/performance/rail)</small>
-
-Note: R:Complete a transition initiated by user input within 100ms. A: Have 16ms, but browsers need about 6ms to render each frame. I: Maximize idle time to increase the odds that the page responds to user input within 50ms. L:on mid-range mobile devices with slow 3G connections
+<small>* that occurs during ~~the entire lifespan of the page~~ a maximum session window with a 1 second gap, capped at 5 seconds. [web.dev/cls](https://web.dev/cls/), [Evolving Cumulative Layout Shift in web tooling](https://web.dev/cls-web-tooling/)</small>
 
 ---
 
@@ -152,20 +128,6 @@ Note: Target is 75% of loads. "Core Web Vitals are the subset of Web Vitals that
 - Pinterest: [pinner-wait-time](https://medium.com/pinterest-engineering/driving-user-growth-with-performance-improvements-cfc50dafadd7)
 
 <small>[Custom metrics](https://web.dev/custom-metrics/) on web.dev</small>
-
----
-
-## Exercise: Flying Blind ✈️
-
-_Pick a website you work on. Run it through each of these tools, keeping each open in separate tabs:_
-
-1. **WebPageTest** [webpagetest.org/easy](http://webpagetest.org/easy)
-2. **Lighthouse** (DevTools, only check performance)
-3. **Lighthouse Treemap** (button in the Lighthouse report)
-4. **PageSpeed Insights** [developers.google.com/speed/pagespeed/insights/](https://developers.google.com/speed/pagespeed/insights/)
-5. **TREO** [treo.sh/sitespeed](https://treo.sh/sitespeed)
-
-Note: **Discussion**: What do you notice about each? What are the similarities/differences? What do you like/dislike?
 
 ---
 
@@ -287,10 +249,10 @@ _CrUX Publicly available data_
 
 <div id="dev-tool">
   <img class="nooutline" width="150px" src="./images/tool-crux.png" alt="CrUX"/>
-  <div class="color-secondary">CrUX Dashboard</div>
+  <div class="color-secondary">TREO Sitespeed</div>
 </div>
 
-<small>Chrome User Experience (CrUX) data is available in PageSpeed Insights, BigQuery, the [CrUX Dashboard](https://rviscomi.github.io/crux-dash-launcher/), and via the CrUX API.</small>
+<small>Chrome User Experience (CrUX) data is available in PageSpeed Insights, BigQuery, the [CrUX Dashboard](https://rviscomi.github.io/crux-dash-launcher/), via the CrUX API, and most easily with [TREO](https://treo.sh/sitespeed).</small>
 
 ---
 
@@ -299,25 +261,8 @@ _CrUX Publicly available data_
 _Packages and vendors_
 
 - [Web Vitals Report](https://web-vitals-report.web.app/) + [web-vitals npm package](https://github.com/GoogleChrome/web-vitals)
-- Many analytics vendors ([Speedcurve](https://www.speedcurve.com/), [Calibre](https://calibreapp.com/))
-- Starting to be bundled in more general analytics/deployment products like [Layer 0](https://www.layer0.co/performance-monitor)
-
----
-
-## Field/RUM Testing Tools
-
-_Custom data sent to your backend or analytics tool_
-
-- Navigation Timing API
-- Resource Timing API
-- User Timing API for custom timings
-
-<small>
-  <p>
-    <a href="https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing/">Assessing Loading Performance in Real Life with Navigation and Resource Timing</a>
-    <br /><a href="https://www.keycdn.com/blog/user-timing/">User Timing API - Measuring User Experience Performance</a>
-  </p>
-<small>
+- Many analytics vendors ([Speedcurve](https://www.speedcurve.com/), [Calibre](https://calibreapp.com/)), [Akamai mPulse](https://www.akamai.com/products/mpulse-real-user-monitoring) (with [boomerang](https://github.com/akamai/boomerang))
+- Starting to be bundled in more general analytics/deployment products
 
 ---
 
@@ -339,6 +284,7 @@ _Custom data sent to your backend or analytics tool_
 
 ## MOAR Tools
 
+- [Lighthouse Treemap](https://sia.codes/posts/lighthouse-treemap/)
 - [Dev Tools Coverage analyzer](https://developers.google.com/web/tools/chrome-devtools/coverage)
 - [Bundlephobia](https://bundlephobia.com/)
 - [keycdn Performance Test tool](https://tools.keycdn.com/performance)
@@ -348,6 +294,18 @@ _Custom data sent to your backend or analytics tool_
 <small>[An Informal Survey of Web Performance Tooling in 2021](https://sia.codes/posts/survey-web-performance-tooling/)</small>
 
 Note: Cmd+shift+p for "coverage"
+
+---
+
+# Step 1: Look at RUM
+
+[treo.sh/sitespeed](https://treo.sh/sitespeed)
+
+---
+
+# Step 2: Dive deeper with lab testing
+
+[WebPageTest](https://www.webpagetest.org/), Chrome Dev Tools
 
 ---
 
