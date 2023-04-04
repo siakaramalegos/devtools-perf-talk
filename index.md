@@ -14,7 +14,7 @@ revealOptions:
 
 ## hi, i'm sia
 
-[sia.codes](https://sia.codes/)
+[sia.codes](https://sia.codes/), [performance.shopify.com](https://performance.shopify.com/)
 
 <img src="./images/champagne_sia.jpg" alt="Sia dressed up as a champagne bottle at Mardi Gras" height="450px" class="no-outline">
 
@@ -42,31 +42,13 @@ revealOptions:
 
 ---
 
-## Speed
+## Core Web Vitals
 
-**Largest contentful paint** (LCP) measures when the largest image or text paint in the viewport occurs
+<img src="./images/core_web_vitals.png" class="plain">
 
-- Elements removed from the DOM are invalidated (splash screens)<!-- .element: class="fragment fade-in" -->
-- A "good" experience is < 2.5 seconds<!-- .element: class="fragment fade-in" -->
-- Impacted by slow server response (TTFB), render-blocking resources (FCP), client-side rendering (FCP)<!-- .element: class="fragment fade-in" -->
+<small>[Web Vitals](https://web.dev/vitals/), [The Science Behind Web Vitals](https://blog.chromium.org/2020/05/the-science-behind-web-vitals.html)</small>
 
-<small>[Largest Contentful Paint (LCP)](https://web.dev/lcp/)</small>
-
----
-
-## Responsiveness
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Lx1cYJAVnzA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-<small>End to End Apps with Polymer by Kevin Schaaf, Polymer Summit 2017</small>
-
----
-
-## Responsiveness
-
-<strong>First Input Delay</strong> (FID) measures the delta between when an input event is received and when the main thread is next idle (field only).
-
-<small>[First Input Delay](https://web.dev/fid/)</small>
+Note: Target is 75% of loads. LCP: Impacted by slow server response (TTFB), render-blocking resources (FCP), client-side rendering (FCP).
 
 ---
 
@@ -89,36 +71,11 @@ Note: measures the worst interaction when < 50 or the 98th percentile
 
 ---
 
-## INP is only in RUM; use TBT when lab testing.
+## Supporting Cast
 
-**Total blocking time (TBT)**  measures the time between First Contentful Paint (FCP) and TTI where the main thread was blocked for long enough to prevent input responsiveness.</li>
-
----
-
-## Stability
-
-<video controls width="800" autoplay loop>
-  <source src="./images/layout-shift.mp4" type="video/mp4">
-  Sorry, your browser doesn't support embedded videos.
-</video>
-
----
-
-## Stability
-
-**Cumulative Layout Shift** (CLS) measures the sum total of all individual layout shift scores for every unexpected layout shift*
-
-<small>* that occurs during ~~the entire lifespan of the page~~ a maximum session window with a 1 second gap, capped at 5 seconds. [web.dev/cls](https://web.dev/cls/), [Evolving Cumulative Layout Shift in web tooling](https://web.dev/cls-web-tooling/)</small>
-
----
-
-## Core Web Vitals
-
-<img src="./images/core_web_vitals.png" class="plain">
-
-<small>[Web Vitals](https://web.dev/vitals/), [The Science Behind Web Vitals](https://blog.chromium.org/2020/05/the-science-behind-web-vitals.html)</small>
-
-Note: Target is 75% of loads. "Core Web Vitals are the subset of Web Vitals that apply to all web pages, should be measured by all site owners, and will be surfaced across all Google tools. Each of the Core Web Vitals represents a distinct facet of the user experience, is measurable in the field, and reflects the real-world experience of a critical user-centric outcome."
+- Time to first byte (TTFB)
+- First contentful paint (FCP)
+- Total blocking time (TBT)
 
 ---
 
@@ -128,6 +85,11 @@ Note: Target is 75% of loads. "Core Web Vitals are the subset of Web Vitals that
 - Pinterest: [pinner-wait-time](https://medium.com/pinterest-engineering/driving-user-growth-with-performance-improvements-cfc50dafadd7)
 
 <small>[Custom metrics](https://web.dev/custom-metrics/) on web.dev</small>
+
+---
+
+<!-- .slide: data-background="./images/testing.jpg" -->
+# Test Environments <!-- .element: class="title highlighter-light" -->
 
 ---
 
@@ -297,15 +259,19 @@ Note: Cmd+shift+p for "coverage"
 
 ---
 
-# Step 1: Look at RUM
-
-[treo.sh/sitespeed](https://treo.sh/sitespeed)
+<!-- .slide: data-background="./images/rum.jpg" -->
+<div class="highlighter-light">
+  <h1>Step 1: Look at RUM</h1>
+  <p><a href="https://treo.sh/sitespeed">treo.sh/sitespeed</a></p>
+</div>
 
 ---
 
-# Step 2: Dive deeper with lab testing
-
-[WebPageTest](https://www.webpagetest.org/), Chrome Dev Tools
+<!-- .slide: data-background="./images/lab.jpg" -->
+<div class="highlighter-light">
+  <h1>Step 2: Dive deeper with lab testing</h1>
+  <p><a href="https://www.webpagetest.org/">WebPageTest</a>, Chrome Dev Tools</p>
+</div>
 
 ---
 
