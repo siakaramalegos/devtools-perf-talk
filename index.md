@@ -222,9 +222,9 @@ _CrUX Publicly available data_
 
 _Packages and vendors_
 
-- [Web Vitals Report](https://web-vitals-report.web.app/) + [web-vitals npm package](https://github.com/GoogleChrome/web-vitals)
-- Many analytics vendors ([Speedcurve](https://www.speedcurve.com/), [Calibre](https://calibreapp.com/)), [Akamai mPulse](https://www.akamai.com/products/mpulse-real-user-monitoring) (with [boomerang](https://github.com/akamai/boomerang))
-- Starting to be bundled in more general analytics/deployment products
+- [web-vitals npm package](https://github.com/GoogleChrome/web-vitals) + [Web Vitals Report](https://web-vitals-report.web.app/)
+- Many analytics vendors ([Speedcurve](https://www.speedcurve.com/), [Calibre](https://calibreapp.com/), [Akamai mPulse](https://www.akamai.com/products/mpulse-real-user-monitoring) with [boomerang](https://github.com/akamai/boomerang))
+- Starting to be bundled in more general analytics/deployment products and platforms
 
 ---
 
@@ -239,8 +239,6 @@ _Packages and vendors_
 `webpack-bundle-analyzer`
 
 <img src="./images/webpack_bundle_analyzer.gif" alt="Webpack bundle analyzer in action showing marimekko chart of dependencies based on size" class="no-outline" width="70%">
-
-<small>Check out other options on [SurviveJS](https://survivejs.com/webpack/optimizing/build-analysis/)</small>
 
 ---
 
@@ -275,6 +273,14 @@ Note: Cmd+shift+p for "coverage"
 
 ---
 
+## WebPageTest Waterfall
+
+<img class="no-outline" src="./images/wpt-waterfall-annotated.png">
+
+Note: green - downloaded before started rendering so these files could be bottlenecks for rendering (js or css). Thumbnail view: scrolling moves the red line, gold border = visual change happened. https://webpagetest.org/result/200525_57_18cda7ecd946450919406f43121c34d0/
+
+---
+
 ## Dev Tools High-Level Orientation
 
 - **Network**: download time (waterfall)
@@ -302,14 +308,6 @@ Note: Use **large request rows** to make size and time columns show more data. T
 - **cmd + e**: start/stop recording
 - **cmd + alt + f**: project-wide search
 - **cmd + shift + o**: in sources tab in a CSS file, finds a selector
-
----
-
-## WebPageTest Waterfall
-
-<img class="no-outline" src="./images/wpt-waterfall-annotated.png">
-
-Note: green - downloaded before started rendering so these files could be bottlenecks for rendering (js or css). Thumbnail view: scrolling moves the red line, gold border = visual change happened. https://webpagetest.org/result/200525_57_18cda7ecd946450919406f43121c34d0/
 
 ---
 
